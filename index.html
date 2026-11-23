@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yo'l Harakati Qoidalari — YHQ Test 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    .dark .custom-scroll::-webkit-scrollbar-thumb { background: #334155; }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-900 dark:bg-[#0b1120] dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-2">
+      <!-- Logo -->
+      <a href="#" onclick="navigate('home')" class="flex items-center gap-2.5 font-bold text-base sm:text-lg text-slate-900 dark:text-white shrink-0">
+        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 14v7M10 12l-6.5-2M14 12l6.5-2"/></svg>
+        </div>
+        <span data-i18n="brand_name">Yo'l Harakati Qoidalari</span>
+      </a>
+
+      <!-- Center Nav -->
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
+        <button onclick="navigate('home')" id="nav-home" class="nav-btn px-3.5 py-2 rounded-lg transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span data-i18n="nav_home">Bosh sahifa</span>
+        </button>
+        <button onclick="navigate('topics')" id="nav-topics" class="nav-btn px-3.5 py-2 rounded-lg transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          <span data-i18n="nav_topics">Mavzular</span>
+        </button>
+        <button onclick="navigate('signs')" id="nav-signs" class="nav-btn px-3.5 py-2 rounded-lg transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
+          <span data-i18n="nav_signs">Belgilar</span>
+        </button>
+        <button onclick="navigate('test-setup')" id="nav-test-setup" class="nav-btn px-3.5 py-2 rounded-lg transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          <span data-i18n="nav_test">Test</span>
+        </button>
+        <button onclick="navigate('questions')" id="nav-questions" class="nav-btn px-3.5 py-2 rounded-lg transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <span data-i18n="nav_questions">Savollar</span>
+        </button>
+        <button onclick="navigate('mistakes')" id="nav-mistakes" class="nav-btn px-3.5 py-2 rounded-lg transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+          <span data-i18n="nav_mistakes">Xatolar</span>
+          <span id="mistake-badge" class="hidden ml-1 px-1.5 py-0.5 text-[11px] font-bold bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-400 rounded-full">0</span>
+        </button>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-2">
+        <!-- Language Dropdown -->
+        <div class="relative">
+          <button onclick="toggleLangMenu()" class="px-2.5 py-1.5 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-1">
+            <span id="current-lang-label">Uz</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="lang-menu" class="hidden absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 py-1.5 z-50 text-sm">
+            <button onclick="setLang('uz')" class="w-full px-3.5 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+              <span>O'zbekcha</span><span class="text-xs text-slate-400">UZ</span>
+            </button>
+            <button onclick="setLang('oz')" class="w-full px-3.5 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+              <span>Ўзбекча</span><span class="text-xs text-slate-400">ЎЗ</span>
+            </button>
+            <button onclick="setLang('qr')" class="w-full px-3.5 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+              <span>Qaraqalpaqsha</span><span class="text-xs text-slate-400">QR</span>
+            </button>
+            <button onclick="setLang('ru')" class="w-full px-3.5 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+              <span>Русский</span><span class="text-xs text-slate-400">RU</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" title="Mavzuni o'zgartirish">
+          <svg id="icon-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="icon-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+
+        <!-- Pro / Login Button -->
+        <button onclick="navigate('pricing')" id="pro-status-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 hover:opacity-90 transition">
+          PRO
+        </button>
+        <button onclick="openAuthModal()" class="px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium flex items-center gap-1.5 shadow-sm transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+          <span data-i18n="btn_login">Kirish</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="flex lg:hidden overflow-x-auto border-t border-slate-200 dark:border-slate-800 px-3 py-1.5 gap-1 text-xs font-medium">
+      <button onclick="navigate('home')" class="px-3 py-1.5 rounded-md bg-brand-50 text-brand-600 dark:bg-slate-800 dark:text-white shrink-0" data-i18n="nav_home">Bosh sahifa</button>
+      <button onclick="navigate('topics')" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 shrink-0" data-i18n="nav_topics">Mavzular</button>
+      <button onclick="navigate('signs')" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 shrink-0" data-i18n="nav_signs">Belgilar</button>
+      <button onclick="navigate('test-setup')" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 shrink-0" data-i18n="nav_test">Test</button>
+      <button onclick="navigate('questions')" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 shrink-0" data-i18n="nav_questions">Savollar</button>
+      <button onclick="navigate('mistakes')" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 shrink-0" data-i18n="nav_mistakes">Xatolar</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main id="app-container" class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 sm:py-8">
+    <!-- Dynamic Views Rendered Here -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white dark:bg-[#0f172a] border-t border-slate-200 dark:border-slate-800 mt-12">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+      <div>
+        <div class="font-bold text-slate-900 dark:text-white mb-2">YHQ Test</div>
+        <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+          O'zbekiston yo'l harakati qoidalari bo'yicha bepul onlayn tayyorgarlik: test savollari, yo'l belgilari va imtihon simulyatori.
+        </p>
+      </div>
+      <div>
+        <div class="font-semibold text-slate-900 dark:text-white mb-2.5">Testlar</div>
+        <ul class="space-y-2 text-slate-500 dark:text-slate-400 text-xs">
+          <li><button onclick="startQuickExam()" class="hover:text-brand-600">Imtihon simulyatori</button></li>
+          <li><button onclick="navigate('topics')" class="hover:text-brand-600">Mavzular bo'yicha testlar</button></li>
+          <li><button onclick="navigate('test-setup')" class="hover:text-brand-600">YHQ biletlari</button></li>
+          <li><button onclick="navigate('questions')" class="hover:text-brand-600">Savollar bazasi</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold text-slate-900 dark:text-white mb-2.5">Ma'lumot</div>
+        <ul class="space-y-2 text-slate-500 dark:text-slate-400 text-xs">
+          <li><button onclick="navigate('questions')" class="hover:text-brand-600">Barcha savollar</button></li>
+          <li><button onclick="navigate('signs')" class="hover:text-brand-600">Yo'l belgilari</button></li>
+          <li><button onclick="navigate('pricing')" class="hover:text-brand-600">Obuna va narxlar</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold text-slate-900 dark:text-white mb-2.5">Yordam</div>
+        <ul class="space-y-2 text-slate-500 dark:text-slate-400 text-xs">
+          <li><button onclick="navigate('home')" class="hover:text-brand-600">Yordam markazi</button></li>
+          <li><button onclick="navigate('pricing')" class="hover:text-brand-600">Maxfiylik siyosati</button></li>
+          <li><button onclick="navigate('pricing')" class="hover:text-brand-600">Foydalanish shartlari</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-100 dark:border-slate-800/80 py-4 text-center text-xs text-slate-400">
+      YHQ Test · O'quv maqsadida · Ma'lumotlar bazasi: yolharakatiqoidalari.uz
+    </div>
+  </footer>
+
+  <!-- FLOATING FEEDBACK BUTTON -->
+  <button onclick="openFeedbackModal()" class="fixed bottom-5 right-5 z-30 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 text-sm font-medium transition">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    <span>Yozing</span>
+  </button>
+
+  <!-- MODAL CONTAINER -->
+  <div id="modal-backdrop" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModal(event)">
+    <div id="modal-content" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl" onclick="event.stopPropagation()"></div>
+  </div>
+
+<script>
+// ==================== DATABASE & CONTENT ====================
+const I18N = {
+  uz: {
+    brand_name: "Yo'l Harakati Qoidalari",
+    nav_home: "Bosh sahifa",
+    nav_topics: "Mavzular",
+    nav_signs: "Belgilar",
+    nav_test: "Test",
+    nav_questions: "Savollar",
+    nav_mistakes: "Xatolar",
+    btn_login: "Kirish",
+    hero_badge: "YHQ O'zbekiston 2026",
+    hero_title: "O'zbekiston YHQ bo'yicha testlar — nazariy imtihonga ishonch bilan tayyorlaning",
+    hero_sub: "1235 ta YHQ savoli, barcha biletlar va mavzular imtihondagi kabi. Imtihon simulyatori, mavzular bo'yicha mashq va xatolar ustida ishlash.",
+    btn_start_exam: "Imtihonni boshlash",
+    btn_topics: "Mavzular",
+  },
+  oz: {
+    brand_name: "Йўл Ҳаракати Қоидалари",
+    nav_home: "Бош саҳифа",
+    nav_topics: "Мавзулар",
+    nav_signs: "Белгилар",
+    nav_test: "Тест",
+    nav_questions: "Саволлар",
+    nav_mistakes: "Хатолар",
+    btn_login: "Кириш",
+    hero_badge: "ЙҲҚ Ўзбекистон 2026",
+    hero_title: "Ўзбекистон ЙҲҚ бўйича тестлар — назарий имтиҳонга ишонч билан тайёрланинг",
+    hero_sub: "1235 та ЙҲҚ саволи, барча билетлар ва мавзулар имтиҳондаги каби. Имтиҳон симулятори, мавзулар бўйича машқ ва хатолар устида ишлаш.",
+    btn_start_exam: "Имтиҳонни бошлаш",
+    btn_topics: "Мавзулар",
+  },
+  qr: {
+    brand_name: "Jol Háreketi Qaǵıydaları",
+    nav_home: "Bas bet",
+    nav_topics: "Temalar",
+    nav_signs: "Belgiler",
+    nav_test: "Test",
+    nav_questions: "Sorawlar",
+    nav_mistakes: "Qáteler",
+    btn_login: "Kiriw",
+    hero_badge: "JHQ Ózbekstan 2026",
+    hero_title: "Ózbekstan JHQ boyınsha testler — teoriyalıq imtixanǵa isenim menen tayarlanıń",
+    hero_sub: "1235 JHQ sorawı, barlıq biletler hám temalar imtixandaǵıday. Imtixan simulyatorı hám qáteler ústinde islew.",
+    btn_start_exam: "Imtixandı baslaw",
+    btn_topics: "Temalar",
+  },
+  ru: {
+    brand_name: "Правила дорожного движения",
+    nav_home: "Главная",
+    nav_topics: "Темы",
+    nav_signs: "Знаки",
+    nav_test: "Тест",
+    nav_questions: "Вопросы",
+    nav_mistakes: "Ошибки",
+    btn_login: "Войти",
+    hero_badge: "ПДД Узбекистана 2026",
+    hero_title: "Тесты по ПДД Узбекистана — уверенно готовьтесь к теоретическому экзамену",
+    hero_sub: "1235 вопросов ПДД, все билеты и темы как на экзамене. Симулятор экзамена, практика по темам и работа над ошибками.",
+    btn_start_exam: "Начать экзамен",
+    btn_topics: "Темы",
+  }
+};
+
+const TOPICS = [
+  { id: 1, title: "Yo'l belgilari", count: 216, desc: "Agar tuzilma va belgilarga ishora qiladigan savollarda qiyinchilik bo'lsa, unda ushbu bo'lim..." },
+  { id: 2, title: "Quvib o'tish va qarama-qarshi yo'nalish", count: 44, desc: "Boshqa transport vositalarini quvib o'tish hamda qarama-qarshi harakatlanish qoidalari." },
+  { id: 3, title: "Piyodalar va yo'lovchilar", count: 24, desc: "Piyodalar o'tish joylaridan o'tish va yo'lovchilarni tashish qoidalari." },
+  { id: 4, title: "Yo'l chiziqlari", count: 59, desc: "Yotiq va tik yo'l chiziqlarining ma'nosi va talablari." },
+  { id: 5, title: "Chorrahalardan o'tish", count: 164, desc: "Tartibga solingan va tartibga solinmagan chorrahalardan o'tish tartibi." },
+  { id: 6, title: "To'xtash va to'xtab turish", count: 65, desc: "Transport vositalarini to'xtatish va qo'yib turish taqiqlangan joylar." },
+  { id: 7, title: "Harakatlanish tezligi", count: 35, desc: "Aholi punktlarida va tashqarisida ruxsat etilgan maksimal tezlik me'yorlari." },
+  { id: 8, title: "Ogohlantiruvchi ishoralar", count: 38, desc: "Burilish ko'rsatkichlari, tovush signallari va favqulodda to'xtash belgilari." },
+  { id: 9, title: "Svetofor va tartibga soluvchi", count: 57, desc: "Svetofor ishoralari va tartibga soluvchining qo'l harakatlari ma'nosi." },
+  { id: 10, title: "Tashqi yoritish asboblari", count: 34, desc: "Kunning qorong'i vaqtida va ko'rinish cheklangan sharoitda chiroqlardan foydalanish." },
+  { id: 11, title: "Temir yo'l kesishmalari", count: 29, desc: "Temir yo'l kesishmalaridan o'tish qoidalari va taqiqlovchi holatlar." },
+  { id: 12, title: "Umumiy qoidalar", count: 82, desc: "YHQda qo'llaniladigan asosiy tushunchalar, haydovchining umumiy majburiyatlari." }
+];
+
+// SVG Graphics for Realistic Road Situations
+const SVG_SCENES = {
+  crosswalk: `<svg viewBox="0 0 500 240" class="w-full h-56 rounded-xl bg-emerald-700">
+    <rect x="0" y="75" width="500" height="90" fill="#334155"/>
+    <line x1="0" y1="120" x2="500" y2="120" stroke="#fff" stroke-dasharray="14,10" stroke-width="3"/>
+    <!-- Zebra Crossing -->
+    <g fill="#f8fafc">
+      <rect x="290" y="80" width="36" height="8"/><rect x="290" y="94" width="36" height="8"/>
+      <rect x="290" y="108" width="36" height="8"/><rect x="290" y="122" width="36" height="8"/>
+      <rect x="290" y="136" width="36" height="8"/><rect x="290" y="150" width="36" height="8"/>
+    </g>
+    <!-- Red Car -->
+    <rect x="80" y="128" width="76" height="30" rx="8" fill="#ef4444"/>
+    <rect x="98" y="132" width="38" height="22" rx="4" fill="#991b1b"/>
+    <!-- Blue Car -->
+    <rect x="190" y="128" width="76" height="30" rx="8" fill="#3b82f6"/>
+    <rect x="208" y="132" width="38" height="22" rx="4" fill="#1e3a8a"/>
+    <!-- Pedestrians -->
+    <circle cx="308" cy="62" r="7" fill="#fde047"/><rect x="303" y="69" width="10" height="14" rx="3" fill="#f97316"/>
+    <circle cx="308" cy="175" r="7" fill="#fde047"/><rect x="303" y="182" width="10" height="14" rx="3" fill="#ec4899"/>
+  </svg>`,
+  roundabout: `<svg viewBox="0 0 500 240" class="w-full h-56 rounded-xl bg-emerald-700">
+    <rect x="215" y="0" width="70" height="240" fill="#334155"/>
+    <rect x="0" y="85" width="500" height="70" fill="#334155"/>
+    <circle cx="250" cy="120" r="68" fill="#334155"/>
+    <circle cx="250" cy="120" r="32" fill="#15803d" stroke="#fff" stroke-width="3"/>
+    <!-- Roundabout Sign -->
+    <circle cx="170" cy="172" r="12" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+    <!-- Red Car inside roundabout -->
+    <rect x="225" y="60" width="44" height="20" rx="6" fill="#ef4444"/>
+    <!-- Blue Car entering -->
+    <rect x="135" y="128" width="46" height="20" rx="6" fill="#3b82f6"/>
+  </svg>`,
+  intersection_moto: `<svg viewBox="0 0 500 240" class="w-full h-56 rounded-xl bg-emerald-700">
+    <rect x="205" y="0" width="90" height="240" fill="#334155"/>
+    <rect x="0" y="80" width="500" height="80" fill="#334155"/>
+    <line x1="250" y1="0" x2="250" y2="80" stroke="#fff" stroke-dasharray="10,8" stroke-width="2"/>
+    <line x1="250" y1="160" x2="250" y2="240" stroke="#fff" stroke-dasharray="10,8" stroke-width="2"/>
+    <line x1="0" y1="120" x2="205" y2="120" stroke="#fff" stroke-dasharray="10,8" stroke-width="2"/>
+    <line x1="295" y1="120" x2="500" y2="120" stroke="#fff" stroke-dasharray="10,8" stroke-width="2"/>
+    <!-- Yellow Car -->
+    <rect x="115" y="126" width="66" height="26" rx="6" fill="#eab308"/>
+    <!-- Motorcycle -->
+    <rect x="155" y="92" width="34" height="12" rx="4" fill="#06b6d4"/>
+    <!-- Blue Car -->
+    <rect x="258" y="170" width="26" height="56" rx="6" fill="#3b82f6"/>
+  </svg>`,
+  motorway: `<svg viewBox="0 0 500 240" class="w-full h-56 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+    <rect x="185" y="25" width="130" height="190" rx="14" fill="#2563eb" stroke="#fff" stroke-width="4"/>
+    <polygon points="215,190 230,50 243,50 235,190" fill="#fff"/>
+    <polygon points="285,190 270,50 257,50 265,190" fill="#fff"/>
+    <rect x="195" y="102" width="110" height="14" fill="#fff"/>
+    <rect x="195" y="106" width="110" height="6" fill="#2563eb"/>
+  </svg>`,
+  overtaking: `<svg viewBox="0 0 500 240" class="w-full h-56 rounded-xl bg-emerald-700">
+    <rect x="0" y="75" width="500" height="90" fill="#334155"/>
+    <line x1="0" y1="120" x2="500" y2="120" stroke="#fff" stroke-dasharray="14,10" stroke-width="3"/>
+    <!-- Yellow Truck -->
+    <rect x="240" y="126" width="110" height="32" rx="5" fill="#f59e0b"/>
+    <!-- Red Car -->
+    <rect x="130" y="128" width="70" height="28" rx="7" fill="#ef4444"/>
+    <!-- Overtaking Arrow -->
+    <path d="M165 125 Q 200 85 280 95" fill="none" stroke="#38bdf8" stroke-width="4" stroke-dasharray="6,4"/>
+    <!-- Sign 3.20 -->
+    <circle cx="95" cy="190" r="18" fill="#fff" stroke="#ef4444" stroke-width="5"/>
+  </svg>`
+};
+
+const QUESTIONS = [
+  {
+    id: 1,
+    topicId: 8,
+    ticket: 1,
+    question: "Haydovchi aholi punktlaridan tashqaridagi yo'lda quvib o'tayotgan haydovchining e'tiborini jalb etish uchun fara chiroqlarini o'chirib yoqish va tovush ishorasi berishni birgalikda qo'llashi mumkinmi?",
+    options: ["Noto'g'ri", "To'g'ri"],
+    correct: 1,
+    explanation: "YHQ 19.10-bandiga muvofiq, aholi punktlaridan tashqarida quvib o'tish haqida ogohlantirish uchun tovush signali va fara chiroqlarini qisqa muddatga yoqib-o'chirishni birgalikda qo'llashga ruxsat etiladi.",
+    lawRef: "O'zR YHQ 19.10-band"
+  },
+  {
+    id: 2,
+    topicId: 3,
+    ticket: 1,
+    image: SVG_SCENES.crosswalk,
+    question: "Qizil avtomobilning haydovchisiga shu vaziyatda piyodalar o'tish joyi orqali harakatlanishni davom ettirishga ruxsat etiladimi?",
+    options: ["Ruxsat etiladi", "Taqiqlanadi"],
+    correct: 1,
+    explanation: "Tartibga solinmagan piyodalar o'tish joyi oldida qo'shni bo'lakdagi transport vositasi sekinlashsa yoki to'xtasa, boshqa haydovchilar ham to'xtab piyodalarni o'tkazib yuborishlari shart.",
+    lawRef: "O'zR YHQ 14.2-band"
+  },
+  {
+    id: 3,
+    topicId: 8,
+    ticket: 1,
+    question: "Haydovchi yo'lovchilarni ogohlantirishi kerak:",
+    options: [
+      "Oynani ochmaslik haqida",
+      "Suhbatlashmaslik haqida",
+      "Tanani chiqarmaslik (qo'ldan tashqari) haqida",
+      "Sanab o'tilgan barchasi haqida"
+    ],
+    correct: 2,
+    explanation: "Transport vositasi harakatlanayotganda yo'lovchilarga tana qismlarini (qo'ldan tashqari) salondan tashqariga chiqarish taqiqlanadi va haydovchi bu haqda ogohlantirishi shart.",
+    lawRef: "O'zR YHQ 5.2-band"
+  },
+  {
+    id: 4,
+    topicId: 3,
+    ticket: 1,
+    question: "Qishloq xo'jaligi yig'im-terimi vaqtida shatakka olgan yuk avtomobilining kuzovida odam tashishga ruxsat etiladimi?",
+    options: ["Ruxsat etiladi", "Taqiqlanadi"],
+    correct: 1,
+    explanation: "Shatakka olingan mexanik transport vositalarining kuzovida odam tashish qat'iyan taqiqlanadi.",
+    lawRef: "O'zR YHQ 22.8-band"
+  },
+  {
+    id: 5,
+    topicId: 7,
+    ticket: 1,
+    question: "Siz reversiv harakatli yo'lga burilmoqchisiz. Bundan keyin siz qaysi tasma bo'ylab harakatlanish huquqiga egasiz?",
+    options: [
+      "Aholi punktlarida istalgan tasma bo'ylab harakatlanishga ruxsat etiladi",
+      "Chetki o'ng tasma bo'ylab harakatlanish kerak va faqat boshqa tasmalar bo'yicha ham harakatlanishga ruxsat etiladigan tasmalar bo'yicha harakatlanish yo'nalishini belgilovchi belgilardan so'ng qayta tizilishga ruxsat etiladi",
+      "Aholi punktlaridan tashqarida qatnov qismining ikki burchining chetiga yaqinroqda"
+    ],
+    correct: 1,
+    explanation: "Reversiv harakatli yo'lga burilganda haydovchi chetki o'ng tasmani egallashi shart. Qayta tizilish faqat reversiv svetofor ruxsat bergandan keyin amalga oshiriladi.",
+    lawRef: "O'zR YHQ 9.8-band"
+  },
+  {
+    id: 6,
+    topicId: 5,
+    ticket: 2,
+    question: "Aylanma harakatlanish chorrahasida:",
+    options: [
+      "Harakatlanayotgan transport vositalari aylanaga kirib kelayotgan transport vositalariga nisbatan ustunlikka (imtiyozga) ega",
+      "Harakatlanayotgan transport vositalariga nisbatan aylanaga kirib kelayotgan transport vositalari ustunlikka (imtiyozga) ega"
+    ],
+    correct: 0,
+    explanation: "O'zbekiston YHQga ko'ra, aylanma harakatlanish tashkil etilgan chorrahalarda aylana bo'ylab harakatlanayotgan transport vositalari aylanaga kirib kelayotganlarga nisbatan imtiyozga ega.",
+    lawRef: "O'zR YHQ 13.11-band"
+  },
+  {
+    id: 7,
+    topicId: 5,
+    ticket: 2,
+    image: SVG_SCENES.roundabout,
+    question: "Rasmda ko'rsatilgan chorraha:",
+    options: [
+      "Tartibga solingan chorraha",
+      "Tartibga solinmagan, teng ahamiyatga ega bo'lmagan yo'llar kesishadigan chorraha",
+      "Tartibga solinmagan, teng ahamiyatga ega bo'lgan yo'llar kesishadigan chorraha"
+    ],
+    correct: 1,
+    explanation: "Chorraha oldida 4.3 (Aylanma harakatlanish) belgisi o'rnatilgan bo'lib, aylana asosiy yo'l hisoblanadi, shu sababli bu teng ahamiyatga ega bo'lmagan tartibga solinmagan chorrahadir.",
+    lawRef: "O'zR YHQ 13.3-band"
+  },
+  {
+    id: 8,
+    topicId: 5,
+    ticket: 2,
+    image: SVG_SCENES.intersection_moto,
+    question: "Chorraha kirishda Siz:",
+    options: [
+      "Birinchi o'tish huquqiga egasiz",
+      "Motosiklga yo'l berishingiz kerak",
+      "Har ikkalasiga ham yo'l berishingiz kerak"
+    ],
+    correct: 2,
+    explanation: "Teng ahamiyatli yo'llar kesishmasida haydovchi o'ng tomondan yaqinlashib kelayotgan barcha transport vositalariga yo'l berishi shart.",
+    lawRef: "O'zR YHQ 13.11-band"
+  },
+  {
+    id: 9,
+    topicId: 1,
+    ticket: 3,
+    image: SVG_SCENES.motorway,
+    question: "Bu belgi o'rnatilgan yo'lda avtobusga harakatlanishga ruxsat etiladimi?",
+    options: [
+      "Faqat ruxsat etilgan to'la vazni 3,5 tonnadan ortiq bo'lmagan avtomobilga ruxsat etiladi",
+      "Taqiqlanadi",
+      "Ruxsat etiladi"
+    ],
+    correct: 2,
+    explanation: "5.1 'Avtomagistral' belgisi o'rnatilgan yo'lda barcha avtobuslar, yengil avtomobillar va yuk avtomobillariga harakatlanishga ruxsat etiladi.",
+    lawRef: "1-ilova, 5.1-belgi"
+  },
+  {
+    id: 10,
+    topicId: 2,
+    ticket: 3,
+    image: SVG_SCENES.overtaking,
+    question: "Qizil avtomobil uchun bu belgining ta'sir oralig'ida quvib o'tishga ruxsat etiladimi?",
+    options: [
+      "G'ildirakli traktorlarni va sekin yuruvchi transport vositalarini quvib o'tishga ruxsat etiladi",
+      "Taqiqlanadi",
+      "Ruxsat etiladi"
+    ],
+    correct: 0,
+    explanation: "3.20 'Quvib o'tish taqiqlangan' belgisi ta'sir oralig'ida soatiga 30 km dan kam tezlikda harakatlanayotgan transport vositalari, mopedlar va ikki g'ildirakli mototsikllarni quvib o'tishga ruxsat etiladi.",
+    lawRef: "1-ilova, 3.20-belgi"
+  }
+];
+
+const ROAD_SIGNS = [
+  // Ogohlantiruvchi
+  { code: "1.1", cat: "warning", name: "Shlagbaumli temir yo'l kesishmasi", shape: "triangle", symbol: "🚧" },
+  { code: "1.2", cat: "warning", name: "Shlagbaumsiz temir yo'l kesishmasi", shape: "triangle", symbol: "🚂" },
+  { code: "1.3.1", cat: "warning", name: "Bir izli temir yo'l", shape: "cross", symbol: "✖️" },
+  { code: "1.3.2", cat: "warning", name: "Ko'p izli temir yo'l", shape: "cross", symbol: "✖️" },
+  { code: "1.11.1", cat: "warning", name: "Xavfli burilish (o'ngga)", shape: "triangle", symbol: "↱" },
+  { code: "1.11.2", cat: "warning", name: "Xavfli burilish (chapga)", shape: "triangle", symbol: "↰" },
+  { code: "1.15", cat: "warning", name: "Sirpanchiq yo'l", shape: "triangle", symbol: "🚗" },
+  { code: "1.16", cat: "warning", name: "Notekis yo'l", shape: "triangle", symbol: "〰️" },
+  { code: "1.20", cat: "warning", name: "Piyodalar o'tish joyi", shape: "triangle", symbol: "🚶" },
+  { code: "1.21", cat: "warning", name: "Bolalar", shape: "triangle", symbol: "🏃" },
+  { code: "1.23", cat: "warning", name: "Ta'mirlash ishlari", shape: "triangle", symbol: "👷" },
+  { code: "1.29", cat: "warning", name: "Tunnel", shape: "triangle", symbol: "🚇" },
+  // Imtiyoz
+  { code: "2.1", cat: "priority", name: "Asosiy yo'l", shape: "diamond", symbol: "◆" },
+  { code: "2.2", cat: "priority", name: "Asosiy yo'lning oxiri", shape: "diamond", symbol: "◇" },
+  { code: "2.4", cat: "priority", name: "Yo'l bering", shape: "inv-triangle", symbol: "▽" },
+  { code: "2.5", cat: "priority", name: "To'xtamasdan harakatlanish taqiqlangan", shape: "octagon", symbol: "STOP" },
+  // Taqiqlovchi
+  { code: "3.1", cat: "prohibitory", name: "Kirish taqiqlangan", shape: "circle-red-fill", symbol: "⛔" },
+  { code: "3.2", cat: "prohibitory", name: "Harakatlanish taqiqlangan", shape: "circle-red", symbol: "⭕" },
+  { code: "3.18.1", cat: "prohibitory", name: "O'ngga burilish taqiqlangan", shape: "circle-red", symbol: "↱" },
+  { code: "3.18.2", cat: "prohibitory", name: "Chapga burilish taqiqlangan", shape: "circle-red", symbol: "↰" },
+  { code: "3.19", cat: "prohibitory", name: "Qayrilib olish taqiqlangan", shape: "circle-red", symbol: "↩️" },
+  { code: "3.20", cat: "prohibitory", name: "Quvib o'tish taqiqlangan", shape: "circle-red", symbol: "🚗" },
+  { code: "3.24", cat: "prohibitory", name: "Yuqori tezlik cheklangan (50)", shape: "circle-red", symbol: "50" },
+  { code: "3.27", cat: "prohibitory", name: "To'xtash taqiqlangan", shape: "circle-blue-red", symbol: "❌" },
+  // Buyuruvchi
+  { code: "4.1.1", cat: "mandatory", name: "Harakatlanish to'g'riga", shape: "circle-blue", symbol: "⬆️" },
+  { code: "4.1.2", cat: "mandatory", name: "Harakatlanish o'ngga", shape: "circle-blue", symbol: "➡️" },
+  { code: "4.1.3", cat: "mandatory", name: "Harakatlanish chapga", shape: "circle-blue", symbol: "⬅️" },
+  { code: "4.3", cat: "mandatory", name: "Aylanma harakatlanish", shape: "circle-blue", symbol: "🔄" },
+  { code: "4.5", cat: "mandatory", name: "Velosiped yo'lkasi", shape: "circle-blue", symbol: "🚲" },
+  // Axborot-ishora
+  { code: "5.1", cat: "info", name: "Avtomagistral", shape: "rect-blue", symbol: "🛣️" },
+  { code: "5.5", cat: "info", name: "Bir tomonlama harakatlanish yo'li", shape: "rect-blue", symbol: "⬆️" },
+  { code: "5.16.1", cat: "info", name: "Piyodalar o'tish joyi", shape: "rect-blue", symbol: "🚶" },
+  { code: "5.15", cat: "info", name: "To'xtab turish joyi", shape: "rect-blue", symbol: "P" },
+  // Servis
+  { code: "6.1", cat: "service", name: "Birinchi tibbiy yordam ko'rsatish joyi", shape: "rect-blue", symbol: "➕" },
+  { code: "6.3", cat: "service", name: "Avtomobillarga yonilg'i quyish shoxobchasi", shape: "rect-blue", symbol: "⛽" },
+  { code: "6.4", cat: "service", name: "Texnik xizmat ko'rsatish joyi", shape: "rect-blue", symbol: "🔧" },
+  { code: "6.7", cat: "service", name: "Ovqatlanish joyi", shape: "rect-blue", symbol: "🍴" }
+];
+
+// ==================== APPLICATION STATE ====================
+let state = {
+  view: 'home',
+  lang: 'uz',
+  isPro: JSON.parse(localStorage.getItem('yhq_is_pro') || 'false'),
+  answeredIds: JSON.parse(localStorage.getItem('yhq_answered') || '[1,2,3]'),
+  mistakeIds: JSON.parse(localStorage.getItem('yhq_mistakes') || '[1,2,7]'),
+  bookmarks: JSON.parse(localStorage.getItem('yhq_bookmarks') || '[]'),
+  lastExam: JSON.parse(localStorage.getItem('yhq_last_exam') || '{"score":2,"total":20,"passed":false,"time":"00:18"}'),
+  
+  // Test Setup Config
+  testConfig: {
+    mode: 'exam', // smart, exam, practice, pairs, blitz, survival
+    count: 20,
+    topicId: 'all'
+  },
+
+  // Active Quiz Session
+  quiz: null,
+  timerInterval: null,
+
+  // Filters
+  signCat: 'all',
+  qSearch: '',
+  qFilter: 'all', // all, saved, mistakes
+  qTopic: 'all',
+  qTicket: 'all'
+};
+
+function saveState() {
+  localStorage.setItem('yhq_is_pro', JSON.stringify(state.isPro));
+  localStorage.setItem('yhq_answered', JSON.stringify(state.answeredIds));
+  localStorage.setItem('yhq_mistakes', JSON.stringify(state.mistakeIds));
+  localStorage.setItem('yhq_bookmarks', JSON.stringify(state.bookmarks));
+  localStorage.setItem('yhq_last_exam', JSON.stringify(state.lastExam));
+  updateBadges();
+}
+
+function updateBadges() {
+  const badge = document.getElementById('mistake-badge');
+  if (state.mistakeIds.length > 0) {
+    badge.textContent = state.mistakeIds.length;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+  const proBtn = document.getElementById('pro-status-btn');
+  if (state.isPro) {
+    proBtn.textContent = 'MAX PRO ✓';
+    proBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300';
+  } else {
+    proBtn.textContent = 'PRO';
+  }
+}
+
+// ==================== NAVIGATION & THEME ====================
+function navigate(view, params = {}) {
+  if (state.timerInterval && view !== 'quiz') {
+    clearInterval(state.timerInterval);
+  }
+  state.view = view;
+  if (params.topicId) state.testConfig.topicId = params.topicId;
+  if (params.mode) state.testConfig.mode = params.mode;
+
+  // Highlight active nav button
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+    btn.classList.add('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
+  });
+  const activeNav = document.getElementById('nav-' + view);
+  if (activeNav) {
+    activeNav.classList.remove('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
+    activeNav.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+  }
+
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark');
+}
+
+function toggleLangMenu() {
+  document.getElementById('lang-menu').classList.toggle('hidden');
+}
+
+function setLang(lang) {
+  state.lang = lang;
+  const labels = { uz: 'Uz', oz: 'Ўз', qr: 'Qr', ru: 'Ru' };
+  document.getElementById('current-lang-label').textContent = labels[lang];
+  document.getElementById('lang-menu').classList.add('hidden');
+  applyTranslations();
+  render();
+}
+
+function applyTranslations() {
+  const dict = I18N[state.lang] || I18N.uz;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key]) el.textContent = dict[key];
+  });
+}
+
+// ==================== RENDER ROUTER ====================
+function render() {
+  const container = document.getElementById('app-container');
+  switch (state.view) {
+    case 'home': container.innerHTML = renderHome(); break;
+    case 'topics': container.innerHTML = renderTopics(); break;
+    case 'signs': container.innerHTML = renderSigns(); break;
+    case 'test-setup': container.innerHTML = renderTestSetup(); break;
+    case 'quiz': container.innerHTML = renderQuiz(); break;
+    case 'results': container.innerHTML = renderResults(); break;
+    case 'questions': container.innerHTML = renderQuestionsBank(); break;
+    case 'mistakes': container.innerHTML = renderMistakes(); break;
+    case 'pricing': container.innerHTML = renderPricing(); break;
+  }
+  applyTranslations();
+}
+
+// ==================== VIEW 1: HOME DASHBOARD ====================
+function renderHome() {
+  const dict = I18N[state.lang] || I18N.uz;
+  const readiness = Math.min(100, Math.round((state.answeredIds.length / 10) * 100));
+
+  return `
+    <!-- HERO BANNER -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1d4ed8] via-[#2563eb] to-[#1e40af] text-white p-7 sm:p-11 shadow-xl mb-6">
+      <div class="relative z-10 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur text-xs font-medium mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span data-i18n="hero_badge">${dict.hero_badge}</span>
+        </div>
+        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-4" data-i18n="hero_title">
+          ${dict.hero_title}
+        </h1>
+        <p class="text-blue-100 text-sm sm:text-base leading-relaxed mb-7" data-i18n="hero_sub">
+          ${dict.hero_sub}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <button onclick="startQuickExam()" class="px-5 py-3 rounded-xl bg-white text-brand-700 font-semibold text-sm hover:bg-blue-50 transition flex items-center gap-2 shadow-md">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span data-i18n="btn_start_exam">${dict.btn_start_exam}</span>
+          </button>
+          <button onclick="navigate('topics')" class="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-sm transition flex items-center gap-2 border border-white/20">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+            <span data-i18n="btn_topics">${dict.btn_topics}</span>
+          </button>
+        </div>
+      </div>
+      <div class="hidden md:block absolute -right-10 -bottom-16 w-72 h-72 rounded-full bg-white/10 blur-2xl"></div>
+    </section>
+
+    <!-- SMART PLAN BANNER -->
+    <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+      <div class="flex items-start sm:items-center gap-4">
+        <div class="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-brand-600 flex items-center justify-center shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <div>
+          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-600 mb-0.5">INTENSIV TAYYORGARLIK</div>
+          <h2 class="font-bold text-slate-900 dark:text-white text-base">10–15 kunlik aqlli reja</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400">20 ta savoldan iborat har bir blok yangi savollar, xatolar va takrorlash uchun materiallarni birlashtiradi.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 shrink-0">
+        <button onclick="startMode('smart', 20)" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold transition">
+          10 kun · balanslangan
+        </button>
+        <button onclick="startMode('smart', 30)" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition">
+          15 kun · intensiv
+        </button>
+      </div>
+    </section>
+
+    <!-- 4 STAT CARDS -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+        <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1235</div>
+        <div class="text-xs text-slate-500 mt-1">Savollar</div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+        <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">718</div>
+        <div class="text-xs text-slate-500 mt-1">Rasmli savollar</div>
+        <div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full mt-2.5 overflow-hidden">
+          <div class="bg-brand-600 h-full rounded-full" style="width: 58%"></div>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+        <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">42</div>
+        <div class="text-xs text-slate-500 mt-1">Mavzular</div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+        <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">124</div>
+        <div class="text-xs text-slate-500 mt-1">Biletlar</div>
+      </div>
+    </section>
+
+    <!-- DAILY GOAL & PROGRESS -->
+    <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 mb-6 flex items-center justify-between gap-4 shadow-sm">
+      <div class="flex-1">
+        <div class="text-xs text-slate-500 mb-1">Kunlik maqsad</div>
+        <div class="text-xl font-bold text-slate-900 dark:text-white mb-2">${state.answeredIds.length} <span class="text-sm font-normal text-slate-400">/ 20 savol</span></div>
+        <div class="w-full max-w-md h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden mb-1.5">
+          <div class="bg-brand-600 h-full rounded-full transition-all" style="width: ${Math.min(100, (state.answeredIds.length/20)*100)}%"></div>
+        </div>
+        <div class="text-xs text-slate-400">Seriyani saqlab qolish uchun yana ${Math.max(0, 20 - state.answeredIds.length)} ta savol qoldi</div>
+      </div>
+      <div class="w-16 h-16 rounded-full border-4 border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center shrink-0">
+        <span class="text-sm font-extrabold text-slate-800 dark:text-white">${Math.round((state.answeredIds.length/1235)*100)}%</span>
+        <span class="text-[10px] text-slate-400">o'tilgan</span>
+      </div>
+    </section>
+
+    <!-- TRAINING HISTORY & READINESS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-3">MASHG'ULOTLAR TARIXI</div>
+        <div class="flex items-center gap-6 mb-4">
+          <div class="w-14 h-14 rounded-full border-4 border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center">
+            <span class="text-xs font-bold">${Math.round((state.answeredIds.length/1235)*100)}%</span>
+            <span class="text-[9px] text-slate-400">bazadan</span>
+          </div>
+          <div>
+            <div class="text-lg font-bold">${state.answeredIds.length} ta</div>
+            <div class="text-xs text-slate-500">Yechilgan savollar</div>
+          </div>
+          <div>
+            <div class="text-lg font-bold text-red-500">${state.lastExam.score}/${state.lastExam.total}</div>
+            <div class="text-xs text-slate-500">Oxirgi imtihon</div>
+          </div>
+        </div>
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+          <span class="text-slate-600 dark:text-slate-300 font-medium">Rasmiy imtihon ${state.lastExam.score}/${state.lastExam.total}</span>
+          <span class="px-2 py-0.5 rounded bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 font-semibold">${Math.round((state.lastExam.score/state.lastExam.total)*100)}% · ${state.lastExam.time}</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">ANALITIKA</div>
+          <h3 class="font-bold text-base mb-3">Imtihonga tayyorlik bahosi</h3>
+        </div>
+        ${state.isPro ? `
+          <div class="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 rounded-xl p-4 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-emerald-700 dark:text-emerald-300 font-medium">Joriy tayyorgarlik darajangiz</div>
+              <div class="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5">${readiness}% — Yaxshi</div>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-xs font-bold">MAX AKTIV</span>
+          </div>
+        ` : `
+          <div class="relative rounded-xl bg-slate-50 dark:bg-slate-800/70 p-4 border border-slate-200/80 dark:border-slate-700 flex flex-col items-center justify-center text-center">
+            <div class="text-xs font-medium text-slate-600 dark:text-slate-300 mb-2">Max obunasi bilan tahlilni oching</div>
+            <button onclick="navigate('pricing')" class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold transition">
+              Ochish →
+            </button>
+          </div>
+        `}
+      </div>
+    </section>
+
+    <!-- 4 FEATURE CARDS -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      <div onclick="navigate('topics')" class="cursor-pointer group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-5 transition shadow-sm">
+        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 text-brand-600 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Mavzular</h3>
+        <p class="text-xs text-slate-500 leading-relaxed mb-3">42 ta mavzu nomi va guruhlari bilan. Yo'l qoidalarining muayyan bo'limini mashq qiling.</p>
+        <span class="text-xs font-semibold text-brand-600 group-hover:underline">Ochish →</span>
+      </div>
+
+      <div onclick="navigate('test-setup')" class="cursor-pointer group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-5 transition shadow-sm">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Test rejimi</h3>
+        <p class="text-xs text-slate-500 leading-relaxed mb-3">Rasmiy imtihon (20 savol, 25 daqiqa) yoki mavzu bo'yicha erkin amaliyot.</p>
+        <span class="text-xs font-semibold text-brand-600 group-hover:underline">Ochish →</span>
+      </div>
+
+      <div onclick="startMode('pairs', 10)" class="cursor-pointer group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-5 transition shadow-sm">
+        <div class="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-1">O'xshash juftliklar</h3>
+        <p class="text-xs text-slate-500 leading-relaxed mb-3">O'xshash savollarni yeching va tafsilotlardagi farqlarni eslab qoling.</p>
+        <span class="text-xs font-semibold text-brand-600 group-hover:underline">Ochish →</span>
+      </div>
+
+      <div onclick="navigate('mistakes')" class="cursor-pointer group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-5 transition shadow-sm">
+        <div class="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-950 text-red-600 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Xatolar ustida ish</h3>
+        <p class="text-xs text-slate-500 leading-relaxed mb-3">Xato qilingan savollarni to'g'ri yechmaguningizcha qayta takrorlang.</p>
+        <span class="text-xs font-semibold text-brand-600 group-hover:underline">Ochish →</span>
+      </div>
+    </section>
+
+    <!-- ALL MATERIALS SECTION -->
+    <section class="mb-8">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Yo'l harakati qoidalari bo'yicha barcha materiallar</h2>
+      <p class="text-xs text-slate-500 mb-4">Savollar bazasi, mavzular, biletlar va yo'l belgilari katalogi — hammasi bir joyda va bepul.</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div onclick="navigate('questions')" class="cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-4 transition">
+          <div class="text-brand-600 font-bold text-sm mb-1">YHQ savollari</div>
+          <div class="text-xs text-slate-500">1235 ta savol to'g'ri javoblari bilan</div>
+        </div>
+        <div onclick="navigate('topics')" class="cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-4 transition">
+          <div class="text-brand-600 font-bold text-sm mb-1">Mavzular</div>
+          <div class="text-xs text-slate-500">42 ta mavzu — har biri alohida mashq</div>
+        </div>
+        <div onclick="navigate('test-setup')" class="cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-4 transition">
+          <div class="text-brand-600 font-bold text-sm mb-1">Biletlar</div>
+          <div class="text-xs text-slate-500">124 ta bilet, imtihon formatida</div>
+        </div>
+        <div onclick="navigate('signs')" class="cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500 rounded-2xl p-4 transition">
+          <div class="text-brand-600 font-bold text-sm mb-1">Yo'l belgilari</div>
+          <div class="text-xs text-slate-500">250+ belgi, 7 turkum va tavsiflar</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO & FAQ ACCORDION -->
+    <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+      <h2 class="text-lg font-bold mb-3">YHQ testlariga qanday tayyorlanish kerak?</h2>
+      <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+        Yo'l harakati qoidalari (YHQ) — O'zbekistonda haydovchilik guvohnomasi olish uchun topshiriladigan nazariy imtihon asosi. Saytdagi imtihon simulyatori 20 ta savol va 25 daqiqalik rejimda ishlaydi, shuning uchun tayyorgarlik haqiqiy imtihonga maksimal darajada yaqin.
+      </p>
+      <div class="space-y-2">
+        ${[
+          { q: "YHQ nima?", a: "Yo'l harakati qoidalari (YHQ) — O'zbekiston Respublikasi hududida yo'l harakati xavfsizligini ta'minlovchi rasmiy qoidalar to'plami." },
+          { q: "Nazariy imtihon qanday o'tadi?", a: "Imtihon kompyuterda o'tkaziladi: 25 daqiqa ichida 20 ta savolga javob berish kerak. Kamida 18 ta to'g'ri javob (ko'pi bilan 2 ta xato) talab etiladi." },
+          { q: "Saytda nechta savol bor?", a: "Sayt bazasida amaldagi 1235 ta rasmiy savol va 124 ta bilet jamlangan." },
+          { q: "Testlar bepulmi?", a: "Ha, barcha 1235 ta savol, rasmiy imtihon simulyatori va yo'l belgilari katalogi mutlaqo bepul." }
+        ].map((item, idx) => `
+          <details class="group border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3">
+            <summary class="cursor-pointer font-semibold text-xs sm:text-sm flex items-center justify-between list-none">
+              <span>${item.q}</span>
+              <span class="text-slate-400 group-open:rotate-180 transition">▼</span>
+            </summary>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2.5 leading-relaxed">${item.a}</p>
+          </details>
+        `).join('')}
+      </div>
+    </section>
+  `;
+}
+
+// ==================== VIEW 2: TOPICS ====================
+function renderTopics() {
+  return `
+    <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-extrabold text-slate-900 dark:text-white">Mavzular bo'yicha yo'l harakati qoidalari testlari</h1>
+        <p class="text-xs text-slate-500 mt-1">Kerakli mavzuni tanlang va amaliyotni boshlang yoki barcha savollarni ko'rib chiqing.</p>
+      </div>
+      <input type="text" oninput="filterTopics(this.value)" placeholder="Mavzu bo'yicha qidirish..." class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm w-full sm:w-64 focus:outline-none focus:border-brand-600" />
+    </div>
+
+    <div id="topics-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      ${TOPICS.map(t => `
+        <div class="topic-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between shadow-sm hover:border-brand-500 transition" data-title="${t.title.toLowerCase()}">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-brand-600 bg-blue-50 dark:bg-blue-950 px-2.5 py-1 rounded-lg">MAVZU ${t.id}</span>
+              <span class="text-xs text-slate-400 font-medium">${t.count} savol</span>
+            </div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2">${t.title}</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-5">${t.desc}</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="startTopicPractice(${t.id})" class="flex-1 py-2.5 px-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5">
+              <span>▶ Amaliyot</span>
+            </button>
+            <button onclick="viewTopicQuestions(${t.id})" class="py-2.5 px-3.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-semibold transition">
+              Ko'rish
+            </button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function filterTopics(query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll('.topic-card').forEach(card => {
+    card.style.display = card.dataset.title.includes(q) ? 'flex' : 'none';
+  });
+}
+
+// ==================== VIEW 3: ROAD SIGNS ====================
+function renderSigns() {
+  const cats = [
+    { id: 'all', label: "Barcha belgilar (253)" },
+    { id: 'warning', label: "Ogohlantiruvchi belgilar (42)" },
+    { id: 'priority', label: "Imtiyoz belgilari (13)" },
+    { id: 'prohibitory', label: "Taqiqlovchi belgilar (43)" },
+    { id: 'mandatory', label: "Buyuruvchi belgilar (19)" },
+    { id: 'info', label: "Axborot-ishora belgilari (62)" },
+    { id: 'service', label: "Servis belgilari (19)" }
+  ];
+
+  const filtered = state.signCat === 'all' ? ROAD_SIGNS : ROAD_SIGNS.filter(s => s.cat === state.signCat);
+
+  const renderBadgeVisual = (s) => {
+    if (s.shape === 'triangle') {
+      return `<div class="w-20 h-20 flex items-center justify-center relative">
+        <svg viewBox="0 0 100 90" class="w-20 h-20"><polygon points="50,6 95,84 5,84" fill="#fff" stroke="#ef4444" stroke-width="8" stroke-linejoin="round"/></svg>
+        <span class="absolute mt-3 text-xl">${s.symbol}</span>
+      </div>`;
+    }
+    if (s.shape === 'diamond') {
+      return `<div class="w-16 h-16 rotate-45 bg-amber-400 border-4 border-white shadow flex items-center justify-center">
+        <span class="-rotate-45 text-xs font-bold text-slate-900">${s.code}</span>
+      </div>`;
+    }
+    if (s.shape === 'circle-red' || s.shape === 'circle-red-fill') {
+      return `<div class="w-20 h-20 rounded-full ${s.shape === 'circle-red-fill' ? 'bg-red-600 text-white' : 'bg-white text-slate-900'} border-[7px] border-red-600 flex items-center justify-center font-extrabold text-xl shadow-sm">
+        ${s.symbol}
+      </div>`;
+    }
+    if (s.shape === 'circle-blue') {
+      return `<div class="w-20 h-20 rounded-full bg-brand-600 border-4 border-white text-white flex items-center justify-center text-2xl shadow-sm">
+        ${s.symbol}
+      </div>`;
+    }
+    return `<div class="w-20 h-24 rounded-xl bg-brand-600 border-4 border-white text-white flex items-center justify-center text-2xl font-extrabold shadow-sm">
+      ${s.symbol}
+    </div>`;
+  };
+
+  return `
+    <div class="mb-6">
+      <h1 class="text-2xl font-extrabold text-slate-900 dark:text-white">Yo'l harakati belgilari</h1>
+      <p class="text-xs text-slate-500 mt-1">O'zbekiston yo'l harakati qoidalari bo'yicha 253 ta rasmiy yo'l belgisi — turkumlar bo'yicha tartiblangan.</p>
+    </div>
+
+    <!-- Category Pills -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      ${cats.map(c => `
+        <button onclick="state.signCat='${c.id}'; render();" class="px-3.5 py-2 rounded-xl text-xs font-semibold transition ${state.signCat === c.id ? 'bg-brand-600 text-white shadow-sm' : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-brand-500'}">
+          ${c.label}
+        </button>
+      `).join('')}
+    </div>
+
+    <!-- Signs Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      ${filtered.map(s => `
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex flex-col items-center text-center shadow-sm hover:border-brand-500 transition">
+          <div class="h-24 flex items-center justify-center mb-3">
+            ${renderBadgeVisual(s)}
+          </div>
+          <div class="text-xs font-bold text-brand-600 mb-1">${s.code}</div>
+          <div class="text-xs text-slate-700 dark:text-slate-300 font-medium leading-snug">${s.name}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// ==================== VIEW 4: TEST SETUP ====================
+function renderTestSetup() {
+  const m = state.testConfig.mode;
+  const modes = [
+    { id: 'smart', title: 'Aqlli reja', desc: 'Yangi savollar + xatolar + takrorlash', badge: null },
+    { id: 'exam', title: 'Rasmiy imtihon', desc: '20 savol · 25 daqiqa · ko\'pi bilan 2 ta xato', badge: null },
+    { id: 'practice', title: 'Amaliyot', desc: 'Vaqt chegarasisiz · mavzu tanlash', badge: null },
+    { id: 'pairs', title: "O'xshash juftliklar", desc: "O'xshash savollar qator ketma-ket", badge: null },
+    { id: 'blitz', title: 'Blits', desc: '60 soniya · maksimal ochko', badge: 'MAX' },
+    { id: 'survival', title: 'Omon qolish', desc: 'Birinchi xatogacha', badge: 'MAX' }
+  ];
+
+  return `
+    <div class="max-w-2xl mx-auto">
+      <div class="mb-6">
+        <h1 class="text-2xl font-extrabold text-slate-900 dark:text-white">Test rejimi</h1>
+        <p class="text-xs text-slate-500 mt-1">Rasmiy imtihon simulyatori yoki erkin amaliyot rejimini tanlang.</p>
+      </div>
+
+      <!-- Mode Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        ${modes.map(item => `
+          <div onclick="selectTestMode('${item.id}')" class="cursor-pointer rounded-2xl p-4 border-2 transition ${m === item.id ? 'border-brand-600 bg-blue-50/50 dark:bg-blue-950/30' : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300'}">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-bold text-sm text-slate-900 dark:text-white">${item.title}</span>
+              ${item.badge ? `<span class="px-2 py-0.5 text-[10px] font-extrabold rounded bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300">${item.badge}</span>` : ''}
+            </div>
+            <p class="text-xs text-slate-500">${item.desc}</p>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Conditional Options -->
+      ${m === 'practice' ? `
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 mb-6 space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">SAVOLLAR SONI</label>
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+              ${[10, 20, 50, 100, 150, 'Barchasi'].map(cnt => {
+                const val = cnt === 'Barchasi' ? 1235 : cnt;
+                return `<button onclick="state.testConfig.count=${val}; render();" class="py-2 rounded-xl text-xs font-bold border ${state.testConfig.count === val ? 'bg-brand-600 text-white border-brand-600' : 'border-slate-200 dark:border-slate-700'}">${cnt}</button>`;
+              }).join('')}
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">MAVZU</label>
+            <select onchange="state.testConfig.topicId=this.value" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm">
+              <option value="all">Barcha mavzular (tasodifiy)</option>
+              ${TOPICS.map(t => `<option value="${t.id}" ${state.testConfig.topicId == t.id ? 'selected' : ''}>Mavzu ${t.id} — ${t.title} (${t.count})</option>`).join('')}
+            </select>
+          </div>
+        </div>
+      ` : `
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 mb-6 text-xs text-slate-600 dark:text-slate-300 space-y-2">
+          <div>• 20 ta tasodifiy savol</div>
+          <div>• 25 daqiqa vaqt beriladi</div>
+          <div>• O'tish uchun kamida 18 ta to'g'ri javob (ko'pi bilan 2 ta xato)</div>
+        </div>
+      `}
+
+      <button onclick="launchQuiz()" class="w-full py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-lg transition flex items-center justify-center gap-2">
+        <span>▶ Boshlash</span>
+      </button>
+    </div>
+  `;
+}
+
+function selectTestMode(mode) {
+  if ((mode === 'blitz' || mode === 'survival') && !state.isPro) {
+    navigate('pricing');
+    return;
+  }
+  state.testConfig.mode = mode;
+  render();
+}
+
+// ==================== QUIZ ENGINE ====================
+function startQuickExam() {
+  state.testConfig.mode = 'exam';
+  state.testConfig.count = 20;
+  state.testConfig.topicId = 'all';
+  launchQuiz();
+}
+
+function startTopicPractice(topicId) {
+  state.testConfig.mode = 'practice';
+  state.testConfig.topicId = topicId;
+  state.testConfig.count = 20;
+  launchQuiz();
+}
+
+function startMode(mode, count) {
+  state.testConfig.mode = mode;
+  state.testConfig.count = count;
+  launchQuiz();
+}
+
+function launchQuiz() {
+  let pool = [...QUESTIONS];
+  if (state.testConfig.topicId !== 'all') {
+    const filtered = pool.filter(q => q.topicId == state.testConfig.topicId);
+    if (filtered.length > 0) pool = filtered;
+  }
+  // Repeat pool if needed to reach requested count up to 20
+  const targetLen = state.testConfig.mode === 'exam' ? 20 : Math.min(20, state.testConfig.count);
+  let sessionQuestions = [];
+  while (sessionQuestions.length < targetLen) {
+    sessionQuestions = sessionQuestions.concat([...pool].sort(() => Math.random() - 0.5));
+  }
+  sessionQuestions = sessionQuestions.slice(0, targetLen);
+
+  state.quiz = {
+    mode: state.testConfig.mode,
+    questions: sessionQuestions,
+    currentIdx: 0,
+    answers: new Array(sessionQuestions.length).fill(null),
+    secondsLeft: state.testConfig.mode === 'blitz' ? 60 : 25 * 60,
+    elapsed: 0
+  };
+
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  state.timerInterval = setInterval(() => {
+    if (!state.quiz) return;
+    state.quiz.elapsed++;
+    if (state.quiz.mode === 'exam' || state.quiz.mode === 'blitz') {
+      state.quiz.secondsLeft--;
+      const timerEl = document.getElementById('quiz-timer');
+      if (timerEl) timerEl.textContent = formatTime(state.quiz.secondsLeft);
+      if (state.quiz.secondsLeft <= 0) finishQuiz();
+    }
+  }, 1000);
+
+  navigate('quiz');
+}
+
+function formatTime(sec) {
+  const m = String(Math.floor(Math.max(0, sec) / 60)).padStart(2, '0');
+  const s = String(Math.max(0, sec) % 60).padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function renderQuiz() {
+  const qObj = state.quiz;
+  const idx = qObj.currentIdx;
+  const question = qObj.questions[idx];
+  const userAns = qObj.answers[idx];
+  const isAnswered = userAns !== null;
+  const isBookmarked = state.bookmarks.includes(question.id);
+
+  const correctCount = qObj.answers.filter((a, i) => a !== null && a === qObj.questions[i].correct).length;
+  const wrongCount = qObj.answers.filter((a, i) => a !== null && a !== qObj.questions[i].correct).length;
+
+  return `
+    <div class="max-w-3xl mx-auto">
+      <!-- Top Control Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <button onclick="navigate('test-setup')" class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold hover:bg-slate-50">
+          ← Orqaga
+        </button>
+
+        <div class="flex items-center gap-3 text-xs font-bold">
+          <span class="text-slate-600 dark:text-slate-300">${idx + 1}/${qObj.questions.length}</span>
+          <span class="text-emerald-600">✓ ${correctCount}</span>
+          <span class="text-red-500">✕ ${wrongCount}</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-mono" id="quiz-timer">
+            ${qObj.mode === 'practice' ? '∞' : formatTime(qObj.secondsLeft)}
+          </span>
+        </div>
+
+        ${isAnswered ? `
+          <button onclick="nextQuestion()" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shadow transition">
+            ${idx + 1 === qObj.questions.length ? 'Yakunlash ✓' : 'Davom etish →'}
+          </button>
+        ` : `
+          <button onclick="nextQuestion()" class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold">
+            Keyingi →
+          </button>
+        `}
+      </div>
+
+      <!-- Question Number Pills -->
+      <div class="flex flex-wrap gap-1.5 mb-5">
+        ${qObj.questions.map((_, i) => {
+          const ans = qObj.answers[i];
+          let cls = 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400';
+          if (ans !== null) {
+            cls = ans === qObj.questions[i].correct
+              ? 'bg-emerald-500 border-emerald-500 text-white'
+              : 'bg-red-500 border-red-500 text-white';
+          }
+          if (i === idx) cls += ' ring-2 ring-brand-600 ring-offset-1 dark:ring-offset-slate-950 font-extrabold';
+          return `<button onclick="state.quiz.currentIdx=${i}; render();" class="w-7 h-7 rounded-lg border text-xs font-semibold transition ${cls}">${i + 1}</button>`;
+        }).join('')}
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+        <div class="flex items-start justify-between gap-3 mb-4">
+          <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
+            ${question.question}
+          </h2>
+          <button onclick="toggleBookmark(${question.id})" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-lg shrink-0" title="Saqlash">
+            ${isBookmarked ? '⭐' : '☆'}
+          </button>
+        </div>
+
+        ${question.image ? `<div class="mb-5 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">${question.image}</div>` : ''}
+
+        <!-- Answer Options -->
+        <div class="space-y-2.5">
+          ${question.options.map((opt, optIdx) => {
+            const letter = String.fromCharCode(65 + optIdx);
+            let cardCls = 'border-slate-200 dark:border-slate-800 hover:border-brand-500 bg-slate-50/50 dark:bg-slate-800/40';
+            let badgeCls = 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700';
+
+            if (isAnswered) {
+              if (optIdx === question.correct) {
+                cardCls = 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200';
+                badgeCls = 'bg-emerald-500 text-white border-emerald-500';
+              } else if (optIdx === userAns) {
+                cardCls = 'border-red-500 bg-red-50 dark:bg-red-950/40 text-red-900 dark:text-red-200';
+                badgeCls = 'bg-red-500 text-white border-red-500';
+              } else {
+                cardCls = 'border-slate-200 dark:border-slate-800 opacity-60';
+              }
+            }
+
+            return `
+              <button ${isAnswered ? 'disabled' : ''} onclick="selectAnswer(${optIdx})" class="w-full text-left p-4 rounded-xl border-2 transition flex items-center justify-between gap-3 ${cardCls}">
+                <div class="flex items-center gap-3">
+                  <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${badgeCls}">${letter}</span>
+                  <span class="text-sm font-medium">${opt}</span>
+                </div>
+                <span class="text-xs text-slate-400 font-mono">${optIdx + 1}</span>
+              </button>
+            `;
+          }).join('')}
+        </div>
+
+        <!-- Explanation Box (Pro vs Free) -->
+        ${isAnswered ? `
+          <div class="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800">
+            ${state.isPro ? `
+              <div class="rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 p-4">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-bold text-brand-700 dark:text-brand-300">💡 Savol izohi va qonun havolasi</span>
+                  <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900 text-brand-700 dark:text-brand-200">${question.lawRef}</span>
+                </div>
+                <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">${question.explanation}</p>
+              </div>
+            ` : `
+              <div class="rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 p-4 text-center">
+                <div class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Izohni ko'rish uchun Pro obunasi kerak</div>
+                <button onclick="navigate('pricing')" class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold transition">
+                  Pro obunani ochish →
+                </button>
+              </div>
+            `}
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function selectAnswer(optIdx) {
+  const qObj = state.quiz;
+  const idx = qObj.currentIdx;
+  if (qObj.answers[idx] !== null) return;
+
+  qObj.answers[idx] = optIdx;
+  const question = qObj.questions[idx];
+
+  if (!state.answeredIds.includes(question.id)) {
+    state.answeredIds.push(question.id);
+  }
+
+  if (optIdx === question.correct) {
+    state.mistakeIds = state.mistakeIds.filter(id => id !== question.id);
+  } else {
+    if (!state.mistakeIds.includes(question.id)) {
+      state.mistakeIds.push(question.id);
+    }
+    if (qObj.mode === 'survival') {
+      saveState();
+      finishQuiz();
+      return;
+    }
+  }
+  saveState();
+  render();
+}
+
+function nextQuestion() {
+  const qObj = state.quiz;
+  if (qObj.currentIdx + 1 < qObj.questions.length) {
+    qObj.currentIdx++;
+    render();
+  } else {
+    finishQuiz();
+  }
+}
+
+function finishQuiz() {
+  if (state.timerInterval) clearInterval(state.timerInterval);
+  const qObj = state.quiz;
+  const correct = qObj.answers.filter((a, i) => a !== null && a === qObj.questions[i].correct).length;
+  const total = qObj.questions.length;
+  const passed = qObj.mode === 'exam' ? (total - correct <= 2 && correct >= 18) : (correct / total >= 0.8);
+
+  state.lastExam = {
+    score: correct,
+    total: total,
+    passed: passed,
+    time: formatTime(qObj.elapsed)
+  };
+  saveState();
+  navigate('results');
+}
+
+// ==================== VIEW 5: RESULTS ====================
+function renderResults() {
+  const qObj = state.quiz;
+  const correct = qObj.answers.filter((a, i) => a !== null && a === qObj.questions[i].correct).length;
+  const total = qObj.questions.length;
+  const pct = Math.round((correct / total) * 100);
+  const passed = state.lastExam.passed;
+
+  const wrongIndices = qObj.questions
+    .map((q, i) => ({ q, i, ans: qObj.answers[i] }))
+    .filter(item => item.ans !== item.q.correct);
+
+  return `
+    <div class="max-w-xl mx-auto text-center">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-sm mb-6">
+        <div class="w-24 h-24 mx-auto rounded-full border-4 ${passed ? 'border-emerald-500 text-emerald-600' : 'border-red-500 text-red-500'} flex flex-col items-center justify-center mb-4">
+          <span class="text-xl font-extrabold">${pct}%</span>
+          <span class="text-[10px] text-slate-400">ball</span>
+        </div>
+
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 ${passed ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-600'}">
+          ${passed ? '✓ TOPSHIRILDI' : '✕ TOPSHIRILMADI'}
+        </span>
+
+        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-1">${correct} / ${total} to'g'ri</h2>
+        <p class="text-xs text-slate-500 mb-6">Sarflangan vaqt: ${state.lastExam.time} · ${total - correct} ta xato</p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <button onclick="launchQuiz()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">
+            ↻ Yangi test
+          </button>
+          <button onclick="navigate('mistakes')" class="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-bold transition">
+            Javoblar tahlili
+          </button>
+        </div>
+      </div>
+
+      ${wrongIndices.length > 0 ? `
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 text-left">
+          <div class="text-xs font-bold text-slate-700 dark:text-slate-300 mb-3">Xato javoblar (${wrongIndices.length}) — ko'rish uchun bosing:</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            ${wrongIndices.map(item => `
+              <button onclick="state.quiz.currentIdx=${item.i}; navigate('quiz');" class="w-8 h-8 rounded-lg bg-red-500 text-white text-xs font-bold hover:opacity-90">
+                ${item.i + 1}
+              </button>
+            `).join('')}
+          </div>
+          <p class="text-[11px] text-slate-400">Ushbu savollar «Xatolar» bo'limiga avtomatik qo'shildi.</p>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+// ==================== VIEW 6: QUESTIONS BANK ====================
+function renderQuestionsBank() {
+  let list = [...QUESTIONS];
+  if (state.qFilter === 'saved') list = list.filter(q => state.bookmarks.includes(q.id));
+  if (state.qFilter === 'mistakes') list = list.filter(q => state.mistakeIds.includes(q.id));
+  if (state.qTopic !== 'all') list = list.filter(q => q.topicId == state.qTopic);
+  if (state.qSearch.trim()) {
+    const s = state.qSearch.toLowerCase();
+    list = list.filter(q => q.question.toLowerCase().includes(s));
+  }
+
+  return `
+    <div class="mb-6">
+      <h1 class="text-2xl font-extrabold text-slate-900 dark:text-white">Savollar bazasi</h1>
+      <p class="text-xs text-slate-500 mt-1">Barcha 1235 ta YHQ savollari to'g'ri javob va qonun izohlari bilan.</p>
+    </div>
+
+    <!-- Filter Tabs & Search -->
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 mb-6 space-y-3">
+      <div class="flex flex-wrap gap-2">
+        <button onclick="state.qFilter='all'; render();" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold ${state.qFilter === 'all' ? 'bg-brand-600 text-white' : 'bg-slate-100 dark:bg-slate-800'}">Barchasi</button>
+        <button onclick="state.qFilter='saved'; render();" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold ${state.qFilter === 'saved' ? 'bg-brand-600 text-white' : 'bg-slate-100 dark:bg-slate-800'}">⭐ Saqlanganlar (${state.bookmarks.length})</button>
+        <button onclick="state.qFilter='mistakes'; render();" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold ${state.qFilter === 'mistakes' ? 'bg-brand-600 text-white' : 'bg-slate-100 dark:bg-slate-800'}">✕ Mening xatolarim (${state.mistakeIds.length})</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <input type="text" value="${state.qSearch}" oninput="state.qSearch=this.value; render();" placeholder="Savol matni bo'yicha qidirish..." class="px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs" />
+        <select onchange="state.qTopic=this.value; render();" class="px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs">
+          <option value="all">Barcha mavzular</option>
+          ${TOPICS.map(t => `<option value="${t.id}" ${state.qTopic == t.id ? 'selected' : ''}>${t.title}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+
+    <!-- Questions List -->
+    <div class="space-y-4">
+      ${list.map(q => `
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="text-sm font-bold text-slate-900 dark:text-white">
+              <span class="text-brand-600 mr-1.5">#${q.id}</span> ${q.question}
+            </div>
+            <button onclick="toggleBookmark(${q.id})" class="text-lg">${state.bookmarks.includes(q.id) ? '⭐' : '☆'}</button>
+          </div>
+          ${q.image ? `<div class="mb-4 max-w-md">${q.image}</div>` : ''}
+          <div class="space-y-1.5 mb-3">
+            ${q.options.map((opt, i) => `
+              <div class="px-3.5 py-2 rounded-xl text-xs font-medium flex items-center gap-2.5 ${i === q.correct ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' : 'bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400'}">
+                <span class="font-bold">${String.fromCharCode(65+i)}.</span>
+                <span>${opt}</span>
+                ${i === q.correct ? '<span class="ml-auto font-bold">✓ To\'g\'ri javob</span>' : ''}
+              </div>
+            `).join('')}
+          </div>
+          <div class="text-[11px] text-slate-500">📚 ${q.lawRef}: ${q.explanation}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function viewTopicQuestions(topicId) {
+  state.qTopic = topicId;
+  navigate('questions');
+}
+
+function toggleBookmark(id) {
+  if (state.bookmarks.includes(id)) {
+    state.bookmarks = state.bookmarks.filter(b => b !== id);
+  } else {
+    state.bookmarks.push(id);
+  }
+  saveState();
+  render();
+}
+
+// ==================== VIEW 7: MISTAKES PRACTICE ====================
+function renderMistakes() {
+  const mistakeList = QUESTIONS.filter(q => state.mistakeIds.includes(q.id));
+
+  if (mistakeList.length === 0) {
+    return `
+      <div class="max-w-lg mx-auto text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-10">
+        <div class="text-4xl mb-3">🎉</div>
+        <h2 class="text-xl font-extrabold mb-2">Xatolar topilmadi!</h2>
+        <p class="text-xs text-slate-500 mb-6">Siz barcha xato qilingan savollarni to'g'ri yechib chiqdingiz.</p>
+        <button onclick="startQuickExam()" class="px-5 py-2.5 rounded-xl bg-brand-600 text-white text-xs font-bold">Yangi imtihon boshlash</button>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-2xl font-extrabold text-slate-900 dark:text-white">Xatolar ustida ish</h1>
+          <p class="text-xs text-slate-500 mt-1">Savolni to'g'ri yechmaguningizcha u ushbu ro'yxatda saqlanadi.</p>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-400 text-xs font-bold">
+          ✕ ${mistakeList.length} ta xato
+        </span>
+      </div>
+
+      <div class="space-y-4">
+        ${mistakeList.map((q, idx) => `
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+            <div class="text-xs text-slate-400 mb-2">Savol ${idx + 1} / ${mistakeList.length}</div>
+            <h3 class="font-bold text-base mb-4">${q.question}</h3>
+            ${q.image ? `<div class="mb-4">${q.image}</div>` : ''}
+            <div class="space-y-2">
+              ${q.options.map((opt, optIdx) => `
+                <button onclick="resolveMistake(${q.id}, ${optIdx === q.correct}, this)" class="w-full text-left p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-brand-500 text-sm font-medium flex items-center gap-3 transition">
+                  <span class="w-6 h-6 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xs font-bold">${String.fromCharCode(65+optIdx)}</span>
+                  <span>${opt}</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function resolveMistake(qId, isCorrect, btnEl) {
+  if (isCorrect) {
+    btnEl.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
+    setTimeout(() => {
+      state.mistakeIds = state.mistakeIds.filter(id => id !== qId);
+      saveState();
+      render();
+    }, 600);
+  } else {
+    btnEl.classList.add('bg-red-500', 'text-white', 'border-red-500');
+  }
+}
+
+// ==================== VIEW 8: PRICING & SUBSCRIPTION ====================
+function renderPricing() {
+  return `
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <div class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">OBUNA</div>
+        <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Tarifni tanlang</h1>
+        <p class="text-xs sm:text-sm text-slate-500">Izohlar, tahlil va qo'shimcha rejimlar bilan imtihonga yanada yaxshi tayyorlaning. Istalgan vaqtda o'zgartirishingiz mumkin.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Basic -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-lg">Basic</div>
+            <div class="text-xs text-slate-400 mb-4">Boshlash uchun</div>
+            <div class="text-3xl font-extrabold mb-6">Bepul</div>
+            <ul class="space-y-3 text-xs text-slate-600 dark:text-slate-300 mb-8">
+              <li>✓ Cheksiz testlar</li>
+              <li>✓ To'g'ri/xato javob</li>
+              <li>✓ Barcha mavzular</li>
+              <li>✓ Rasmiy imtihon rejimi</li>
+            </ul>
+          </div>
+          <button onclick="activatePlan(false)" class="w-full py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold">
+            ${!state.isPro ? 'Joriy tarif' : 'Basic tarifiga o\'tish'}
+          </button>
+        </div>
+
+        <!-- Pro -->
+        <div class="bg-white dark:bg-slate-900 border-2 border-brand-600 rounded-3xl p-6 flex flex-col justify-between relative shadow-xl">
+          <span class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-brand-600 text-white text-[10px] font-bold uppercase">Ommabop</span>
+          <div>
+            <div class="font-bold text-lg">Pro</div>
+            <div class="text-xs text-slate-400 mb-4">Chuqurroq o'rganish</div>
+            <div class="text-3xl font-extrabold mb-6">19 000 <span class="text-sm font-normal text-slate-400">so'm/oy</span></div>
+            <ul class="space-y-3 text-xs text-slate-600 dark:text-slate-300 mb-8">
+              <li>✓ Barcha Basic imkoniyatlari</li>
+              <li>✓ Savol izohlari</li>
+              <li>✓ Qonun havolalari</li>
+              <li>✓ Xatolar ustida ish</li>
+              <li>✓ Saqlangan savollar</li>
+              <li>✓ Zaif mavzular tahlili</li>
+            </ul>
+          </div>
+          <button onclick="activatePlan(true)" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">
+            ${state.isPro ? 'Faollashtirilgan ✓' : 'Tanlash'}
+          </button>
+        </div>
+
+        <!-- Max -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="font-bold text-lg">Max</div>
+            <div class="text-xs text-slate-400 mb-4">To'liq imkoniyat</div>
+            <div class="text-3xl font-extrabold mb-6">39 000 <span class="text-sm font-normal text-slate-400">so'm/oy</span></div>
+            <ul class="space-y-3 text-xs text-slate-600 dark:text-slate-300 mb-8">
+              <li>✓ Barcha Pro imkoniyatlari</li>
+              <li>✓ Qonun matnidan to'liq izoh</li>
+              <li>✓ Blits va Omon qolish rejimlari</li>
+              <li>✓ Imtihonga tayyorlik bahosi</li>
+              <li>✓ Natijani ulashish</li>
+            </ul>
+          </div>
+          <button onclick="activatePlan(true)" class="w-full py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold hover:opacity-90 transition">
+            ${state.isPro ? 'Faollashtirilgan ✓' : 'Tanlash'}
+          </button>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-slate-400">
+        * To'lov Telegram bot orqali: kartaga o'tkazasiz, chek yuborasiz, admin tasdiqlaydi (30 kunlik obuna).
+      </p>
+    </div>
+  `;
+}
+
+function activatePlan(enablePro) {
+  state.isPro = enablePro;
+  saveState();
+  render();
+}
+
+// ==================== MODALS & KEYBOARD SHORTCUTS ====================
+function openAuthModal() {
+  const modal = document.getElementById('modal-content');
+  modal.innerHTML = `
+    <h3 class="text-lg font-extrabold mb-1">Tizimga kirish</h3>
+    <p class="text-xs text-slate-500 mb-4">Natijalaringiz va xatolar tarixini barcha qurilmalarda sinxronlash uchun Telegram orqali kiring.</p>
+    <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-[#229ED9] hover:opacity-90 text-white font-bold text-sm flex items-center justify-center gap-2 mb-3">
+      <span>✈️ Telegram orqali kirish</span>
+    </button>
+    <button onclick="closeModal()" class="w-full py-2 text-xs text-slate-400">Bekor qilish</button>
+  `;
+  document.getElementById('modal-backdrop').classList.remove('hidden');
+}
+
+function openFeedbackModal() {
+  const modal = document.getElementById('modal-content');
+  modal.innerHTML = `
+    <h3 class="text-lg font-extrabold mb-1">Xabar yuborish</h3>
+    <p class="text-xs text-slate-500 mb-4">Savolda xatolik topsangiz yoki taklifingiz bo'lsa yozib qoldiring.</p>
+    <textarea rows="3" placeholder="Xabaringizni yozing..." class="w-full p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs mb-3"></textarea>
+    <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-brand-600 text-white font-bold text-xs">Yuborish</button>
+  `;
+  document.getElementById('modal-backdrop').classList.remove('hidden');
+}
+
+function closeModal(e) {
+  if (!e || e.target.id === 'modal-backdrop') {
+    document.getElementById('modal-backdrop').classList.add('hidden');
+  }
+}
+
+// Keyboard shortcuts (1, 2, 3, 4, Enter/Space) during Quiz
+document.addEventListener('keydown', (e) => {
+  if (state.view !== 'quiz' || !state.quiz) return;
+  const q = state.quiz.questions[state.quiz.currentIdx];
+  if (['1', '2', '3', '4'].includes(e.key)) {
+    const idx = parseInt(e.key) - 1;
+    if (idx < q.options.length) selectAnswer(idx);
+  } else if (e.key === 'Enter' || e.key === 'ArrowRight') {
+    nextQuestion();
+  }
+});
+
+// Initialize App
+updateBadges();
+navigate('home');
+</script>
+</body>
+</html>
